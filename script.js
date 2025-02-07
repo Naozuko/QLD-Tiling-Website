@@ -1,4 +1,35 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Gallery modal functionality
+    const modal = document.getElementById('gallery-modal');
+    const viewAllButton = document.querySelector('.view-all-works');
+    const closeButton = document.querySelector('.close-modal');
+
+    viewAllButton.addEventListener('click', () => {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+    });
+
+    closeButton.addEventListener('click', () => {
+        modal.classList.remove('active');
+        document.body.style.overflow = ''; // Restore scrolling
+    });
+
+    // Close modal when clicking outside of content
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Close modal with escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    });
+
     // Handle form submission
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
